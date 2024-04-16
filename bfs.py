@@ -1,14 +1,13 @@
 from graf import Puzzle
 from collections import deque
-class bfs:
+class BFS:
     @staticmethod
     def bfs(graphToSolve):
         puzzle=Puzzle(graphToSolve)
         if puzzle.checkWin():
             print("Starting position is the winning position.")
-            return graphToSolve
-        queue=deque()
-        queue.append(puzzle)
+            return puzzle
+        queue=deque([puzzle])
         visited = set([puzzle])
         while queue:
             puzzle=queue.popleft()
@@ -16,6 +15,8 @@ class bfs:
                 return puzzle
             for neighbor in puzzle.generateNeighbours():
                 if neighbor not in visited:
+                    if neighbor.checkWin():
+                        return neighbor
                     visited.add(neighbor)
                     queue.append(neighbor)
         print("No solution found.")

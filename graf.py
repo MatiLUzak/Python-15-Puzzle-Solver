@@ -26,18 +26,23 @@ class Puzzle:
             self.blankSpot = newBlankSpot
             return True
         return False
-    def moveAndCreate(self,dir):
-        newBlankSpot = (self.blankSpot[0] + dir[0], self.blankSpot[1] + dir[1])
-        if 0 <= newBlankSpot[0] < Puzzle.boardSize and 0 <= newBlankSpot[1] < Puzzle.boardSize:
+
+    def moveAndCreate(self, dir):
+        x, y = self.blankSpot
+        nx, ny = x + dir[0], y + dir[1]
+        if 0 <= nx < Puzzle.boardSize and 0 <= ny < Puzzle.boardSize:
             new_board = [row[:] for row in self.board]
-            new_board[self.blankSpot[0]][self.blankSpot[1]] = self.board[newBlankSpot[0]][newBlankSpot[1]]
-            self.board[newBlankSpot[0]][newBlankSpot[1]] = 0
+            new_board[x][y], new_board[nx][ny] = new_board[nx][ny], new_board[x][y]
             return Puzzle(new_board)
         return None
+
     def checkWin(self):
         for i in range(self.boardSize):
             for j in range(self.boardSize):
-                if self.board[i][j] != i * self.boardSize + j + 1 and self.board[i][j] != 0:
+                if (i * self.boardSize + j + 1) == self.boardSize * self.boardSize:
+                    if self.board[i][j] != 0:
+                        return False
+                elif self.board[i][j] != i * self.boardSize + j + 1:
                     return False
         return True
 
