@@ -36,5 +36,7 @@ class Puzzle:
 
     def __hash__(self):
         return hash(tuple(tuple(row)for row in self.board))
+    def __eq__(self, other):
+        return isinstance(other, Puzzle) and self.board == other.board
 
 
