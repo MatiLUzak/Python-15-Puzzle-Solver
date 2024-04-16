@@ -1,16 +1,23 @@
-# This is a sample Python script.
+from graf import Puzzle
+def main():
+    initial_setup = [
+        [1, 2, 3, 4],
+        [5, 0, 6, 8],
+        [9, 10, 7, 11],
+        [13, 14, 15, 12]
+    ]
+    game = Puzzle(initial=initial_setup)  # rdrd
+    moves = {'u': Puzzle.UP, 'd': Puzzle.DOWN, 'l': Puzzle.LEFT, 'r': Puzzle.RIGHT}
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+    while True:
+        game.printBoard()
+        move = input("Your move (u/d/l/r): ").lower()
+        if move in moves:
+            if not game.move(moves[move]):
+                print("Invalid move, try again.")
+        else:
+            print("Invalid input, please use 'u', 'd', 'l', or 'r' to move.")
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
