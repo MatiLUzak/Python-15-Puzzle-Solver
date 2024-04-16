@@ -26,7 +26,14 @@ class Puzzle:
             self.blankSpot = newBlankSpot
             return True
         return False
-
+    def moveAndCreate(self,dir):
+        newBlankSpot = (self.blankSpot[0] + dir[0], self.blankSpot[1] + dir[1])
+        if 0 <= newBlankSpot[0] < Puzzle.boardSize and 0 <= newBlankSpot[1] < Puzzle.boardSize:
+            new_board = [row[:] for row in self.board]
+            new_board[self.blankSpot[0]][self.blankSpot[1]] = self.board[newBlankSpot[0]][newBlankSpot[1]]
+            self.board[newBlankSpot[0]][newBlankSpot[1]] = 0
+            return Puzzle(new_board)
+        return None
     def checkWin(self):
         for i in range(self.boardSize):
             for j in range(self.boardSize):
@@ -38,5 +45,13 @@ class Puzzle:
         return hash(tuple(tuple(row)for row in self.board))
     def __eq__(self, other):
         return isinstance(other, Puzzle) and self.board == other.board
+    def generateNeighbours(self):
+        neighset=set()
+        for dir in self.DIRECTIONS:
+            neighbour=self.moveAndCreate(dir)
+            if neighbour is not None:
+             neighset.add(neighbour)
+        return neighset
+
 
 
