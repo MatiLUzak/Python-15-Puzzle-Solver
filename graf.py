@@ -45,6 +45,25 @@ class Puzzle:
             if neighbour is not None:
              neighset.add(neighbour)
         return neighset
+    def hamming(self):
+        distance=0
+        x=1
+        for i in range(Puzzle.boardSize):
+            for j in range(Puzzle.boardSize):
+                if(x!=self.board[i][j] and self.board[i][j]!=0):
+                    distance+=1
+                x+=1
+        return distance
+    def manhattan(self):
+        distance=0
+        for i in range(Puzzle.boardSize):
+            for j in range(Puzzle.boardSize):
+                val=self.board[i][j]
+                if(val!=0):
+                    x=(val-1)//Puzzle.boardSize
+                    y=(val-1)%Puzzle.boardSize
+                    distance+=abs(x-i)+abs(y-j)
+        return distance
 
 
 

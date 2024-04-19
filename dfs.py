@@ -14,20 +14,20 @@ class DFS:
         start = time.time()
         puzzle=Puzzle(graphToSolve)
         if puzzle.checkWin():
-            self.solution = puzzle.depth
-            self.visitNumber = 1
-            self.proceded = 1
+            self.solution=puzzle.depth
+            self.visitNumber= 1
+            self.proceded=1
             self.time = time.time() - start
             return puzzle
         stack = deque([puzzle])
         visited = set([puzzle])
-        self.visitNumber = 1
+        self.visitNumber=1
         while stack:
             puzzle = stack.pop()
             self.depth = max(self.depth, puzzle.depth)
             if puzzle.depth > self.max_depth_limit:
                 continue
-            self.proceded += 1
+            self.proceded+=1
             if puzzle.checkWin():
                 self.solution = puzzle.depth
                 self.time = time.time() - start
