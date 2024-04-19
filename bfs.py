@@ -31,9 +31,9 @@ class BFS:
             for neighbor in puzzle.generateNeighbours(moveOrder):
                 if neighbor not in visited:
                     visited.add(neighbor)
+                    self.depth = max(neighbor.depth, self.depth)
                     if neighbor.checkWin():
                         self.solution=neighbor.depth
-                        self.depth = max(neighbor.depth, self.depth)
                         self.time = time.time() - start
                         self.visitNumber = len(visited)
                         return neighbor
