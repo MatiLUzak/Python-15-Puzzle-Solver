@@ -8,8 +8,9 @@ class Puzzle:
     blankSpot = (3, 3)
     win_hash=hash(tuple(range(1,boardSize*boardSize))+(0,))
 
-    def __init__(self, initial,depth=0):
+    def __init__(self, initial,depth=0,moves=''):
         self.depth = depth
+        self.moves = moves
         self.board = [[0] * Puzzle.boardSize for _ in range(Puzzle.boardSize)]
         for i in range(Puzzle.boardSize):
             for j in range(Puzzle.boardSize):
@@ -20,13 +21,13 @@ class Puzzle:
         for row in self.board:
             print(' '.join(str(cell).rjust(2, ' ') for cell in row))
 
-    def moveAndCreate(self, dir):
+    def moveAndCreate(self, dir,move):
         x, y = self.blankSpot
         nx, ny = x + dir[0], y + dir[1]
         if 0 <= nx < Puzzle.boardSize and 0 <= ny < Puzzle.boardSize:
             new_board = [row[:] for row in self.board]
             new_board[x][y], new_board[nx][ny] = new_board[nx][ny], new_board[x][y]
-            return Puzzle(new_board,self.depth+1)
+            return Puzzle(new_board,self.depth+1,self.moves+move)
         return None
 
     def checkWin(self):
@@ -40,7 +41,7 @@ class Puzzle:
         neighset=set()
         for move in moveOrder:
             dir=Puzzle.DIRECTIONS[move]
-            neighbour=self.moveAndCreate(dir)
+            neighbour=self.moveAndCreate(dir,move)
             if neighbour is not None:
              neighset.add(neighbour)
         return neighset

@@ -9,8 +9,9 @@ if __name__ == '__main__':
         [13, 14, 15, 12]
     ]
     bfsSolver=BFS()
-    solution=bfsSolver.bfs(initial_setup,"LURD")
+    solution=bfsSolver.bfs(initial_setup,"UDLR")
     solution.printBoard()
     bfsSolver.print_stats()
+    print(solution.moves)
 
    # main()
