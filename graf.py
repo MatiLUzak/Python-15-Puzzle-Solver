@@ -8,7 +8,8 @@ class Puzzle:
     blankSpot = (3, 3)
     win_hash=hash(tuple(range(1,boardSize*boardSize))+(0,))
 
-    def __init__(self, initial):
+    def __init__(self, initial,depth=0):
+        self.depth = depth
         self.board = [[0] * Puzzle.boardSize for _ in range(Puzzle.boardSize)]
         for i in range(Puzzle.boardSize):
             for j in range(Puzzle.boardSize):
@@ -25,7 +26,7 @@ class Puzzle:
         if 0 <= nx < Puzzle.boardSize and 0 <= ny < Puzzle.boardSize:
             new_board = [row[:] for row in self.board]
             new_board[x][y], new_board[nx][ny] = new_board[nx][ny], new_board[x][y]
-            return Puzzle(new_board)
+            return Puzzle(new_board,self.depth+1)
         return None
 
     def checkWin(self):
