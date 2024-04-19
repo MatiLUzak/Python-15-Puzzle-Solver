@@ -3,7 +3,7 @@ class Puzzle:
     DOWN = (1, 0)
     LEFT = (0, -1)
     RIGHT = (0, +1)
-    DIRECTIONS = [UP, DOWN, LEFT, RIGHT]
+    DIRECTIONS = {'U': UP, 'D': DOWN, 'L': LEFT, 'R': RIGHT}
     boardSize = 4
     blankSpot = (3, 3)
     win_hash=hash(tuple(range(1,boardSize*boardSize))+(0,))
@@ -36,9 +36,10 @@ class Puzzle:
         return hash(tuple(self.board[i][j] for i in range(self.boardSize) for j in range(self.boardSize)))
     def __eq__(self, other):
         return isinstance(other, Puzzle) and self.board == other.board
-    def generateNeighbours(self):
+    def generateNeighbours(self,moveOrder):
         neighset=set()
-        for dir in self.DIRECTIONS:
+        for move in moveOrder:
+            dir=Puzzle.DIRECTIONS[move]
             neighbour=self.moveAndCreate(dir)
             if neighbour is not None:
              neighset.add(neighbour)

@@ -8,7 +8,7 @@ class BFS:
         self.proceded=0
         self.depth=0
         self.time=0
-    def bfs(self,graphToSolve):
+    def bfs(self,graphToSolve,moveOrder):
         start = time.time()
         puzzle=Puzzle(graphToSolve)
         if puzzle.checkWin():
@@ -28,7 +28,7 @@ class BFS:
                 self.time = time.time() - start
                 self.visitNumber= len(visited)
                 return puzzle
-            for neighbor in puzzle.generateNeighbours():
+            for neighbor in puzzle.generateNeighbours(moveOrder):
                 if neighbor not in visited:
                     visited.add(neighbor)
                     queue.append(neighbor)
