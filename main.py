@@ -1,3 +1,4 @@
+from dfs import DFS
 from graf import Puzzle
 from bfs import BFS
 
@@ -12,6 +13,12 @@ if __name__ == '__main__':
     solution=bfsSolver.bfs(initial_setup,"UDLR")
     solution.printBoard()
     bfsSolver.print_stats()
+    print(solution.moves)
+
+    dfsSolver=DFS()
+    solution=dfsSolver.dfs(initial_setup,"UDLR")
+    solution.printBoard()
+    dfsSolver.print_stats()
     print(solution.moves)
 
    # main()

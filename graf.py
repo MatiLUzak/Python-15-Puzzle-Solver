@@ -6,7 +6,7 @@ class Puzzle:
     DIRECTIONS = {'U': UP, 'D': DOWN, 'L': LEFT, 'R': RIGHT}
     boardSize = 4
     blankSpot = (3, 3)
-    win_hash=hash(tuple(range(1,boardSize*boardSize))+(0,))
+    winHash=hash(tuple(range(1,boardSize*boardSize))+(0,))
 
     def __init__(self, initial,depth=0,moves=''):
         self.depth = depth
@@ -31,7 +31,7 @@ class Puzzle:
         return None
 
     def checkWin(self):
-        return hash(tuple(self.board[i][j] for i in range(self.boardSize) for j in range(self.boardSize)))==Puzzle.win_hash
+        return hash(tuple(self.board[i][j] for i in range(self.boardSize) for j in range(self.boardSize)))==Puzzle.winHash
 
     def __hash__(self):
         return hash(tuple(self.board[i][j] for i in range(self.boardSize) for j in range(self.boardSize)))
