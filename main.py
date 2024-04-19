@@ -8,6 +8,9 @@ if __name__ == '__main__':
         [9, 10, 7, 11],
         [13, 14, 15, 12]
     ]
-    solution=BFS.bfs(initial_setup)
+    bfsSolver=BFS()
+    solution=bfsSolver.bfs(initial_setup)
     solution.printBoard()
+    bfsSolver.print_stats()
+
    # main()
