@@ -1,6 +1,7 @@
 from dfs import DFS
 from graf import Puzzle
 from bfs import BFS
+from astar import AStar
 
 if __name__ == '__main__':
     initial_setup = [
@@ -21,4 +22,13 @@ if __name__ == '__main__':
     dfsSolver.print_stats()
     print(solution.moves)
 
-   # main()
+    a_starSolver = AStar()
+    heuristic_method = 'manh'  # Możesz wybrać 'hamm' dla heurystyki Hamminga.
+    solution = a_starSolver.solve(initial_setup, "UDLR", heuristic_method)
+    if solution:
+        solution.printBoard()
+        a_starSolver.print_stats()
+        print("A* Solution moves:", solution.moves)
+    else:
+        print("A* No solution found.")
+    # main()
