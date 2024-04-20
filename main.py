@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     a_starSolver = AStar()
     heuristic_method = 'manh'  # Możesz wybrać 'hamm' dla heurystyki Hamminga.
-    solution = a_starSolver.solve(initial_setup, "UDLR", heuristic_method)
+    solution = a_starSolver.solve(initial_setup, heuristic_method)
     if solution:
         solution.printBoard()
         a_starSolver.print_stats()

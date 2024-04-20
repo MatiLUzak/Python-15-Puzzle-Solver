@@ -66,11 +66,8 @@ class Puzzle:
         return distance
 
     def calculate_total_cost(self, heuristic_method):
-        # Oblicz koszt dotarcia g(n) jako głębokość
         g = self.depth
-        # Oblicz h(n) na podstawie wybranej metody heurystycznej
         h = self.hamming() if heuristic_method == 'hamm' else self.manhattan()
-        # Zwróć całkowity koszt f(n)
         return g + h
 
 
