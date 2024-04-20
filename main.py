@@ -19,6 +19,7 @@ def main():
 
     initial_setup = read_initial_config(input_file)
     solution = None
+    solver = None
 
     if algorithm.lower() == 'bfs':
         solver = BFS()
@@ -26,7 +27,7 @@ def main():
     elif algorithm.lower() == 'dfs':
         solver = DFS()
         solution = solver.dfs(initial_setup, param)
-    elif algorithm.lower() == 'astar':
+    elif algorithm.lower() == 'astr':
         solver = AStar()
         solution = solver.solve(initial_setup, param)
 
