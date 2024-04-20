@@ -1,5 +1,4 @@
 from dfs import DFS
-from graf import Puzzle
 from bfs import BFS
 from astar import AStar
 
