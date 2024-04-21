@@ -8,7 +8,7 @@ class DFS:
         self.proceded = 0
         self.depth = 0
         self.time = 0
-        self.max_depth_limit = 20
+        self.max_depth_limit = 10
 
     def dfs(self, graphToSolve, moveOrder):
         start = time.time()
@@ -22,6 +22,7 @@ class DFS:
         stack = deque([puzzle])
         visited = set([puzzle])
         self.visitNumber=1
+
         while stack:
             puzzle = stack.pop()
             if puzzle.depth > self.max_depth_limit:
@@ -34,7 +35,7 @@ class DFS:
                 self.visitNumber = len(visited)
                 return puzzle
             for neighbor in puzzle.generateNeighbours(moveOrder):
-                if neighbor not in visited:
+                if neighbor not in visited and neighbor.depth <= self.max_depth_limit:
                     visited.add(neighbor)
                     stack.append(neighbor)
                     if neighbor.checkWin():
@@ -45,6 +46,9 @@ class DFS:
 
         self.time = time.time() - start
         print("No solution found.")
+        for visit in visited:
+         print("g ", visit.depth)
+         visit.printBoard()
         return None
 
     def print_stats(self):
