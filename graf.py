@@ -34,16 +34,16 @@ class Puzzle:
         return hash(tuple(self.board[i][j] for i in range(self.boardSize) for j in range(self.boardSize)))==Puzzle.winHash
 
     def __hash__(self):
-        return hash(tuple(self.board[i][j] for i in range(self.boardSize) for j in range(self.boardSize)))
+        return hash(tuple(self.board[i][j] for i in range(self.boardSize) for j in range(self.boardSize)) + (self.depth,))
     def __eq__(self, other):
         return isinstance(other, Puzzle) and self.board == other.board
     def generateNeighbours(self,moveOrder):
-        neighset=set()
+        neighset=list()
         for move in moveOrder:
             dir=Puzzle.DIRECTIONS[move]
             neighbour=self.moveAndCreate(dir,move)
             if neighbour is not None:
-             neighset.add(neighbour)
+             neighset.append(neighbour)
         return neighset
     def hamming(self):
         distance=0
