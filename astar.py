@@ -18,9 +18,9 @@ class AStar:
         self.depth = 0
         self.time = 0
 
-    def solve(self, graphToSolve, heuristic_method,boardSize):
+    def solve(self, graphToSolve, heuristic_method,rows, cols):
         start =time.time()
-        puzzle = Puzzle(graphToSolve,boardSize)
+        puzzle = Puzzle(graphToSolve,rows, cols)
         puzzleNode = PuzzleNode(puzzle, heuristic_method)
         priorityQueue = []
         heapq.heappush(priorityQueue, puzzleNode)
@@ -40,6 +40,8 @@ class AStar:
             for move in 'UDLR':
                 neighbor = puzzle.moveAndCreate(Puzzle.DIRECTIONS[move], move)
                 if neighbor and neighbor not in visited:
+                    visited.add(neighbor)
+                    self.depth = max(neighbor.depth, self.depth)
                     if neighbor.checkWin():
                         self.solution = neighbor.depth
                         self.time = time.time() - start
