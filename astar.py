@@ -18,7 +18,7 @@ class AStar:
         self.depth = 0
         self.time = 0
 
-    def solve(self, graphToSolve,boardSize, heuristic_method='manh'):
+    def solve(self, graphToSolve, heuristic_method,boardSize):
         start =time.time()
         puzzle = Puzzle(graphToSolve,boardSize)
         puzzleNode = PuzzleNode(puzzle, heuristic_method)

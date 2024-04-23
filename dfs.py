@@ -34,16 +34,20 @@ class DFS:
                 self.time = time.time() - start
                 self.visitNumber = len(visited)
                 return puzzle
-            for neighbor in reversed(puzzle.generateNeighbours(moveOrder)):
+            stackRev = deque()
+            for neighbor in puzzle.generateNeighbours(moveOrder):
                 if neighbor not in visited and neighbor.depth <= self.max_depth_limit:
                     visited.add(neighbor)
-                    stack.append(neighbor)
+                    stackRev.append(neighbor)
                     if neighbor.checkWin():
                         self.solution = neighbor.depth
                         self.time = time.time() - start
                         self.visitNumber = len(visited)
                         self.depth = max(self.depth, neighbor.depth)
                         return neighbor
+            while stackRev:
+                stack.appendleft(stackRev.pop())
+
 
         self.time = time.time() - start
         print("No solution found.")
