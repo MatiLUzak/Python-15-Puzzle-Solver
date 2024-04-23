@@ -40,6 +40,12 @@ class AStar:
             for move in 'UDLR':
                 neighbor = puzzle.moveAndCreate(Puzzle.DIRECTIONS[move], move)
                 if neighbor and neighbor not in visited:
+                    if neighbor.checkWin():
+                        self.solution = neighbor.depth
+                        self.time = time.time() - start
+                        self.visitNumber = len(visited)
+                        self.depth = max(self.depth, neighbor.depth)
+                        return neighbor
                     neighbor_node = PuzzleNode(neighbor, heuristic_method)
                     heapq.heappush(priorityQueue, neighbor_node)
         self.time = time.time() - start

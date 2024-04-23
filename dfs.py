@@ -42,13 +42,11 @@ class DFS:
                         self.solution = neighbor.depth
                         self.time = time.time() - start
                         self.visitNumber = len(visited)
+                        self.depth = max(self.depth, neighbor.depth)
                         return neighbor
 
         self.time = time.time() - start
         print("No solution found.")
-        #for visit in visited:
-        # print("g ", visit.depth)
-        # visit.printBoard()
         return None
 
     def print_stats(self):

@@ -36,6 +36,7 @@ class BFS:
                         self.solution=neighbor.depth
                         self.time = time.time() - start
                         self.visitNumber = len(visited)
+                        self.depth = max(neighbor.depth, self.depth)
                         return neighbor
                     queue.append(neighbor)
 
