@@ -17,19 +17,18 @@ def main():
     else:
         _, algorithm, param, input_file, solution_file, stats_file = sys.argv
 
-    initial_setup = read_initial_config(input_file)
+    initial_setup, board_size = read_initial_config(input_file)
     solution = None
-    solver = None
 
     if algorithm.lower() == 'bfs':
         solver = BFS()
-        solution = solver.bfs(initial_setup, param)
+        solution = solver.bfs(initial_setup, param, board_size)
     elif algorithm.lower() == 'dfs':
         solver = DFS()
-        solution = solver.dfs(initial_setup, param)
+        solution = solver.dfs(initial_setup, param, board_size)
     elif algorithm.lower() == 'astr':
         solver = AStar()
-        solution = solver.solve(initial_setup, param)
+        solution = solver.solve(initial_setup, param, board_size)
 
     if solution:
         write_solution(solution_file, solution)
@@ -57,14 +56,14 @@ def write_stats(filename, solver):
         file.write(f"{solver.time:.3f}\n")
 
 def read_initial_config(input_file):
-    initial_setup = []
     with open(input_file, 'r') as file:
         dimensions = file.readline().strip().split()
         rows, cols = int(dimensions[0]), int(dimensions[1])
+        initial_setup = []
         for _ in range(rows):
             line = file.readline().strip().split()
             initial_setup.append([int(x) for x in line])
-    return initial_setup
+    return initial_setup, rows
 
 if __name__ == "__main__":
     main()

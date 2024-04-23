@@ -10,9 +10,9 @@ class DFS:
         self.time = 0
         self.max_depth_limit = 20
 
-    def dfs(self, graphToSolve, moveOrder):
+    def dfs(self, graphToSolve, moveOrder,boardSize):
         start = time.time()
-        puzzle=Puzzle(graphToSolve)
+        puzzle=Puzzle(graphToSolve,boardSize)
         if puzzle.checkWin():
             self.solution=puzzle.depth
             self.visitNumber= 1

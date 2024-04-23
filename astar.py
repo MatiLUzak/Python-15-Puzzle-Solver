@@ -18,9 +18,9 @@ class AStar:
         self.depth = 0
         self.time = 0
 
-    def solve(self, graphToSolve, heuristic_method='manh'):
+    def solve(self, graphToSolve,boardSize, heuristic_method='manh'):
         start =time.time()
-        puzzle = Puzzle(graphToSolve)
+        puzzle = Puzzle(graphToSolve,boardSize)
         puzzleNode = PuzzleNode(puzzle, heuristic_method)
         priorityQueue = []
         heapq.heappush(priorityQueue, puzzleNode)

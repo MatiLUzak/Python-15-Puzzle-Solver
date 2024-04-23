@@ -8,9 +8,9 @@ class BFS:
         self.proceded=0
         self.depth=0
         self.time=0
-    def bfs(self,graphToSolve,moveOrder):
+    def bfs(self,graphToSolve,moveOrder,boardSize):
         start = time.time()
-        puzzle=Puzzle(graphToSolve)
+        puzzle=Puzzle(graphToSolve,boardSize)
         if puzzle.checkWin():
             self.solution=puzzle.depth
             self.visitNumber=1
