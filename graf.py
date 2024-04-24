@@ -36,7 +36,7 @@ class Puzzle:
         return hash(tuple(self.board[i][j] for i in range(self.rows) for j in range(self.cols))) == self.winHash
 
     def __hash__(self):
-        return hash((tuple(self.board[i][j] for i in range(self.rows) for j in range(self.cols)), self.depth))
+        return hash(tuple(self.board[i][j] for i in range(self.rows) for j in range(self.cols))+ (self.depth,))
 
     def __eq__(self, other):
         return isinstance(other, Puzzle) and self.board == other.board
