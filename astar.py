@@ -42,12 +42,12 @@ class AStar:
                 if neighbor and neighbor not in visited:
                     visited.add(neighbor)
                     self.depth = max(neighbor.depth, self.depth)
-                    if neighbor.checkWin():
-                        self.solution = neighbor.depth
-                        self.time = time.time() - start
-                        self.visitNumber = len(visited)
-                        self.depth = max(self.depth, neighbor.depth)
-                        return neighbor
+                    #if neighbor.checkWin():
+                     #   self.solution = neighbor.depth
+                       # self.time = time.time() - start
+                      #  self.visitNumber = len(visited)
+                        #self.depth = max(self.depth, neighbor.depth)
+                        #return neighbor
                     neighbor_node = PuzzleNode(neighbor, heuristic_method)
                     heapq.heappush(priorityQueue, neighbor_node)
         self.time = time.time() - start

@@ -11,7 +11,7 @@ class Puzzle:
         self.depth = depth
         self.moves = moves
         self.board = [[0] * cols for _ in range(rows)]
-        self.winHash = hash(tuple(range(1, rows * cols)) + (0,))
+        #self.winHash = hash(tuple(range(1, rows * cols)) + (0,))
         self.blankSpot = None
         for i in range(rows):
             for j in range(cols):
@@ -33,10 +33,17 @@ class Puzzle:
         return None
 
     def checkWin(self):
-        return hash(tuple(self.board[i][j] for i in range(self.rows) for j in range(self.cols))) == self.winHash
+        for i in range(self.rows):
+            for j in range(self.cols):
+                if(self.board[i][j]!=i*self.cols+j+1 and self.board[i][j]!=0):
+                    return False
+
+        return True
+
+        #return hash(tuple(self.board[i][j] for i in range(self.rows) for j in range(self.cols))) == self.winHash
 
     def __hash__(self):
-        return hash(tuple(self.board[i][j] for i in range(self.rows) for j in range(self.cols))+ (self.depth,))
+        return hash(tuple(self.board[i][j] for i in range(self.rows) for j in range(self.cols)))
 
     def __eq__(self, other):
         return isinstance(other, Puzzle) and self.board == other.board

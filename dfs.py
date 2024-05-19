@@ -38,7 +38,7 @@ class DFS:
             for neighbor in puzzle.generateNeighbours(moveOrder):
                 if neighbor not in visited and neighbor.depth <= self.max_depth_limit:
                     visited.add(neighbor)
-                    stack.append(neighbor)
+                    stackRev.append(neighbor)
                     if neighbor.checkWin():
                         self.solution = neighbor.depth
                         self.time = time.time() - start
