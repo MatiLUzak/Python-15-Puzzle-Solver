@@ -36,7 +36,7 @@ class DFS:
                # return puzzle
             stackRev = []
             for neighbor in puzzle.generateNeighbours(moveOrder):
-                if neighbor not in 1 and neighbor.depth <= self.max_depth_limit:
+                if neighbor not in visited and neighbor.depth <= self.max_depth_limit:
                     visited.add(neighbor)
                     stackRev.append(neighbor)
                     if neighbor.checkWin():
