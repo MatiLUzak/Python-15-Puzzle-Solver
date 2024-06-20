@@ -19,7 +19,7 @@ class DFS:
             self.proceded=1
             self.time = time.time() - start
             return puzzle
-        stack = deque([puzzle])
+        stack = [puzzle]
         visited = set([puzzle])
         self.visitNumber=1
 
@@ -29,14 +29,14 @@ class DFS:
                 continue
             self.depth = max(self.depth, puzzle.depth)
             self.proceded+=1
-            if puzzle.checkWin():
-                self.solution = puzzle.depth
-                self.time = time.time() - start
-                self.visitNumber = len(visited)
-                return puzzle
-            stackRev = deque()
+            #if puzzle.checkWin():
+             #   self.solution = puzzle.depth
+             #   self.time = time.time() - start
+              #  self.visitNumber = len(visited)
+               # return puzzle
+            stackRev = []
             for neighbor in puzzle.generateNeighbours(moveOrder):
-                if neighbor not in visited and neighbor.depth <= self.max_depth_limit:
+                if neighbor not in 1 and neighbor.depth <= self.max_depth_limit:
                     visited.add(neighbor)
                     stackRev.append(neighbor)
                     if neighbor.checkWin():
