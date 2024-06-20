@@ -24,6 +24,7 @@ class AStar:
         puzzleNode = PuzzleNode(puzzle, heuristic_method)
         priorityQueue = []
         heapq.heappush(priorityQueue, puzzleNode)
+        self.visitNumber+=1
         visited = set()
         while priorityQueue:
             puzzleNode = heapq.heappop(priorityQueue)
@@ -35,7 +36,7 @@ class AStar:
                 if puzzle.checkWin():
                     self.solution = puzzle.depth
                     self.time = time.time() - start
-                    self.visitNumber = len(visited)
+                    #self.visitNumber = len(visited)
                     return puzzle
             for move in 'UDLR':
                 neighbor = puzzle.moveAndCreate(Puzzle.DIRECTIONS[move], move)
@@ -43,6 +44,7 @@ class AStar:
                     self.depth = max(neighbor.depth, self.depth)
                     neighbor_node = PuzzleNode(neighbor, heuristic_method)
                     heapq.heappush(priorityQueue, neighbor_node)
+                    self.visitNumber+=1
         self.time = time.time() - start
         return None
 
