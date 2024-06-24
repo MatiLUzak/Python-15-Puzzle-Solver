@@ -89,7 +89,7 @@
  [],
  False,
  False,
- 1718913064,
+ 1719216674,
  [('run.exe',
    'C:\\Users\\mluza\\PycharmProjects\\puzzle15\\.venv\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\run.exe',
    'EXECUTABLE')],

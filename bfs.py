@@ -23,11 +23,11 @@ class BFS:
             puzzle=queue.popleft()
             self.proceded+=1
             self.depth=max(puzzle.depth,self.depth)
-            if puzzle.checkWin():
-                self.solution=puzzle.depth
-                self.time = time.time() - start
-                self.visitNumber= len(visited)
-                return puzzle
+            #if puzzle.checkWin():
+             #   self.solution=puzzle.depth
+              #  self.time = time.time() - start
+               # self.visitNumber= len(visited)
+                #return puzzle
             for neighbor in puzzle.generateNeighbours(moveOrder):
                 if neighbor not in visited:
                     visited.add(neighbor)

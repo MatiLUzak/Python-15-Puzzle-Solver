@@ -1,7 +1,6 @@
 import heapq
 import time
 from graf import Puzzle
-
 class PuzzleNode:
     def __init__(self, puzzle, heuristic_method):
         self.puzzle = puzzle
@@ -25,22 +24,22 @@ class AStar:
         priorityQueue = []
         heapq.heappush(priorityQueue, puzzleNode)
         self.visitNumber+=1
-        visited = set()
+        closed = set()
         while priorityQueue:
             puzzleNode = heapq.heappop(priorityQueue)
             puzzle = puzzleNode.puzzle
             self.proceded += 1
-            if puzzle not in visited:
-                visited.add(puzzle)
+            if puzzle not in closed:
+                closed.add(puzzle)
                 self.depth = max(self.depth, puzzle.depth)
                 if puzzle.checkWin():
                     self.solution = puzzle.depth
                     self.time = time.time() - start
-                    #self.visitNumber = len(visited)
+                    #self.visitNumber = len(closed)
                     return puzzle
             for move in 'UDLR':
                 neighbor = puzzle.moveAndCreate(Puzzle.DIRECTIONS[move], move)
-                if neighbor and neighbor not in visited:
+                if neighbor and neighbor not in closed:
                     self.depth = max(neighbor.depth, self.depth)
                     neighbor_node = PuzzleNode(neighbor, heuristic_method)
                     heapq.heappush(priorityQueue, neighbor_node)
